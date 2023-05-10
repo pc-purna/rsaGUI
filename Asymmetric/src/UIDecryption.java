@@ -18,10 +18,10 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.BitSet;
+//import java.util.BitSet;
 
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class UIDecryption extends JFrame {
 	
     public UIDecryption() {
@@ -251,9 +251,9 @@ public class UIDecryption extends JFrame {
         String st=f.encryptfileName();
         encryptFileName.setText(st);
         try{
-    	  	RSAPublicKey publicKey = readPublicKey("publicR.rsa");
+    	  	RSAPublicKey publicKey = readPublicKey("publicReceiver.rsa");
     		publicKeyR.setText(publicKey.toString());
-    		publicKey = readPublicKey("publicS.rsa");
+    		publicKey = readPublicKey("publicSender.rsa");
     		publicKeyS.setText(publicKey.toString());
     	}catch(Exception e){
             JOptionPane.showMessageDialog(null,"KEYS NOT FOUND!!!GENERATE KEYS!!! ");
@@ -265,9 +265,9 @@ public class UIDecryption extends JFrame {
         String st=f.signfileName();
         signFileName.setText(st);
         try{
-        	RSAPublicKey publicKey = (RSAPublicKey) readPublicKey("publicR.rsa");
+        	RSAPublicKey publicKey = (RSAPublicKey) readPublicKey("publicReceiver.rsa");
     		publicKeyR.setText(publicKey.toString());
-    		publicKey = (RSAPublicKey) readPublicKey("publicS.rsa");
+    		publicKey = (RSAPublicKey) readPublicKey("publicSender.rsa");
     		publicKeyS.setText(publicKey.toString());
     	}catch(Exception e){
             JOptionPane.showMessageDialog(null,"KEYS NOT FOUND!!!GENERATE KEYS!!! ");
@@ -286,12 +286,12 @@ public class UIDecryption extends JFrame {
             cipherfile.close();
     		
 
-        	RSAPublicKey rsapub = (RSAPublicKey) readPublicKey("publicS.rsa");
+        	RSAPublicKey rsapub = (RSAPublicKey) readPublicKey("publicSender.rsa");
 		    BigInteger E = rsapub.getPublicExponent();
 		    BigInteger N = rsapub.getModulus();
 		    
 		    if(Verify(E,N,signFile)){
-            	RSAPrivateKey privateKey = readPrivateKey("privateR.rsa");
+            	RSAPrivateKey privateKey = readPrivateKey("privateReceiver.rsa");
 	        	//byte[] plainText = decrypt(cipherText, privateKey,stripExtension(signFile));
 	        	decrypt(cipherText, privateKey,stripExtension(signFile));
 	        	/*FileOutputStream fos = new FileOutputStream(stripExtension(signFile));

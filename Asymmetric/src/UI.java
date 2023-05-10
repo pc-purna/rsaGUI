@@ -101,7 +101,7 @@ public class UI extends javax.swing.JFrame {
      private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {
         generateKey(PUBLIC_KEY_FILE_R,PRIVATE_KEY_FILE_R);
         generateKey(PUBLIC_KEY_FILE_S,PRIVATE_KEY_FILE_S);
-        JOptionPane.showMessageDialog(null,"The keys are generated successfully!!!");           
+        JOptionPane.showMessageDialog(null,"The Public and Private keys are generated successfully!!!");           
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {
    
@@ -164,10 +164,10 @@ public class UI extends javax.swing.JFrame {
      
   }
 	public static final String ALGORITHM = "RSA";
-	public static final String PRIVATE_KEY_FILE_R = "privateR.rsa";
-	public static final String PUBLIC_KEY_FILE_R = "publicR.rsa";
-	public static final String PRIVATE_KEY_FILE_S = "privateS.rsa";
-	public static final String PUBLIC_KEY_FILE_S = "publicS.rsa";
+	public static final String PRIVATE_KEY_FILE_R = "privateReceiver.rsa";
+	public static final String PUBLIC_KEY_FILE_R = "publicReceiver.rsa";
+	public static final String PRIVATE_KEY_FILE_S = "privateSender.rsa";
+	public static final String PUBLIC_KEY_FILE_S = "publicSender.rsa";
 	private javax.swing.JButton btnDecrypt;
 	private javax.swing.JButton btnEncrypt;
 	private javax.swing.JButton btnGenerate;

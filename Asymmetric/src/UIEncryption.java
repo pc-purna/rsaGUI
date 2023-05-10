@@ -1,20 +1,33 @@
 
-import javax.swing.*;
 import java.io.File;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileSystemView;
-import javax.swing.UIManager;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import javax.crypto.Cipher;
-import java.security.*;
-import java.security.interfaces.*;
+import java.io.ObjectOutputStream;
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.BitSet;
-import java.io.ObjectOutputStream;
-import java.math.BigInteger;
-import java.io.FileInputStream;
+
+import javax.crypto.Cipher;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileSystemView;
 
 
 @SuppressWarnings("serial")
@@ -227,9 +240,9 @@ public class UIEncryption extends JFrame {
         st = f.fileName();
         fileName.setText(st);
         try{
-        	RSAPublicKey pub = readPublicKey("publicR.rsa");
+        	RSAPublicKey pub = readPublicKey("publicReceiver.rsa");
     		publicKeyR.setText(pub.toString());
-    		pub = readPublicKey("publicS.rsa");
+    		pub = readPublicKey("publicSender.rsa");
     		publicKeyS.setText(pub.toString());
     	}catch(Exception e){
     		e.printStackTrace();
@@ -259,8 +272,8 @@ public class UIEncryption extends JFrame {
             plainfile.read(originalText);
             plainfile.close();
             
-    		byte[] cipherText = new byte[100*originalText.length];
-    	  	RSAPublicKey publicKey = readPublicKey("publicR.rsa");
+    		//byte[] cipherText = new byte[100*originalText.length];
+    	  	RSAPublicKey publicKey = readPublicKey("publicReceiver.rsa");
       		//cipherText = encrypt(originalText, publicKey);
       		encrypt(originalText, publicKey);
       		/*FileOutputStream fos = new FileOutputStream(ENCRYPTED_FILE);
@@ -272,10 +285,10 @@ public class UIEncryption extends JFrame {
         	byte[] byteData = md.digest();
         	BigInteger digest = new BigInteger(1, byteData);
         	
-        	RSAPublicKey rsapub = (RSAPublicKey) readPublicKey("publicS.rsa");
+        	RSAPublicKey rsapub = (RSAPublicKey) readPublicKey("publicSender.rsa");
 		    BigInteger N = rsapub.getModulus();
 		    
-		    RSAPrivateKey rsapriv = readPrivateKey("privateS.rsa");
+		    RSAPrivateKey rsapriv = readPrivateKey("privateSender.rsa");
 		    BigInteger D =  rsapriv.getPrivateExponent();
 		    
 
