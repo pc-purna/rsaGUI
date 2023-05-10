@@ -316,10 +316,11 @@ public class UIEncryption extends JFrame {
             //file less than 245 bytes
                 if(originalText.length <= LIMIT){
                     cipherTemp = cipher.doFinal(originalText);
-                    System.out.println(cipherTemp.length + "\n"+BitSet.valueOf(cipherTemp).cardinality());
+                    System.out.println("FOR FILE SIZE LESS THAN 245 BYTES \n" + cipherTemp.length + "\n"+BitSet.valueOf(cipherTemp).cardinality());
                 }
             //files larger than 245 bytes
             else{
+                System.out.println("FOR FILE SIZE LARGER THAN 245 BYTES \n");
                 while(i<originalText.length){
                 	for(int j = 0 ; j < LIMIT && i != originalText.length; j++,i++)
                 		temp[j]=originalText[(int) i];
@@ -482,7 +483,8 @@ public static String stripExtension(String str) {
     public JTextField publicKeyS;
     public JTextField encryptedFile;
     public static final int LIMIT = 245;
- 	public static final String ALGORITHM = "RSA/ECB/PKCS1Padding";
+ 	//public static final String ALGORITHM = "RSA/ECB/PKCS1Padding";
+    public static final String ALGORITHM = "RSA/ECB/NOPADDING";
  	public static final String ENCRYPTED_FILE = "cipherText.encrypt";
     // End of variables declaration//GEN-END:variables
 }
