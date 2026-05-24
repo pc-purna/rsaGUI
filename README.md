@@ -1,4 +1,4 @@
-# Copilot Chat Conversation Export: Java file analysis for encryption and
+# Java file analysis for encryption and
 
 **User:** @pc-purna
 **Thread URL:** https://github.com/copilot/c/c7f3f230-4d99-4e41-bf3a-1bd065f096f9
